@@ -1,0 +1,11 @@
+{   
+    "view" : "blank",
+    "landing" : "",
+    "userName" : "",
+    "password" : "",
+    "title" : "this should never be referenced",
+    "error"  : {
+        "name": "",
+        "description": ""
+    }
+}

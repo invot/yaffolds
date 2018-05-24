@@ -1,0 +1,11 @@
+{   
+    "view" : "blank",
+    "landing" : "list",
+    "userName" : "",
+    "password" : "",
+    "title" : "A brief overview of your information",
+    "error"  : {
+        "name": "",
+        "description": ""
+    }
+}

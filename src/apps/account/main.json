@@ -1,0 +1,11 @@
+{   
+    "view" : "list",
+    "landing" : "list",
+    "userName" : "",
+    "password" : "",
+    "title" : "Manage your contact and personal information",
+    "error"  : {
+        "name": "",
+        "description": ""
+    }
+}

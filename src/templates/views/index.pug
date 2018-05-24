@@ -1,0 +1,10 @@
+extends ../layout/main.pug
+
+block content
+    #loading.modal.d-block.bg-dark(tabindex='-1', role='dialog')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content.text-center.border-0.bg-transparent
+                    .text-light.fa-4x
+                        i.fas.fa-spinner.fa-spin
+
+    #app

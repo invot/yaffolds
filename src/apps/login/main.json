@@ -1,0 +1,12 @@
+{   
+    "view" : "login",
+    "landing" : "login",
+    "userName" : "",
+    "password" : "",
+    "title" : "Login using your WAMS ID",
+    "desc": "",
+    "error"  : {
+        "name": "",
+        "description": ""
+    }
+}
