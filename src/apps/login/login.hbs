@@ -1,18 +1,18 @@
 <form class="form-signin" action="/dashboard.html">
-  <p class="small mb-4 text-center border-bottom text-muted">{{login.title}}</p>
-  {{#if login.error}}
+  <p class="small mb-4 text-center border-bottom text-muted">{{title}}</p>
+  {{#if error.name}}
   <div class="alert alert-danger" role="alert">
-      <strong>{{login.error.name}}</strong><br />
-      <span>{{login.error.details}}</span>
+      <strong>{{error.name}}</strong><br />
+      <span>{{error.details}}</span>
   </div>
   {{/if}}
   <div class="input-group mb-3">
     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user fa-fw"></i></span></div>
-    <input class="form-control mb-0" id="inputEmail" type="text" placeholder="User Name" required="required" autofocus="autofocus" value="{{{login.userName}}}" />
+    <input class="form-control mb-0" id="inputEmail" type="text" placeholder="User Name" required="required" autofocus="autofocus" value="{{{userName}}}" />
   </div>
   <div class="input-group mb-3">
     <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key fa-fw"></i></span></div>
-    <input class="form-control mb-0" id="inputPassword" type="password" placeholder="Password" required="required" value="{{{login.password}}}"/>
+    <input class="form-control mb-0" id="inputPassword" type="password" placeholder="Password" required="required" value="{{{password}}}"/>
   </div>
   <div class="pt-2 row">
     <div class="col-8 col-md-6">
