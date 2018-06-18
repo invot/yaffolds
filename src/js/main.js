@@ -14,8 +14,18 @@ let localStorageHandler = function() {
             return b.getItem(a)
         }
     };
-    this.set = function(a, c) {
-        b.setItem(a, JSON.stringify(c));
+    this.set = function(a, c) { // Update a single value or object
+        if (~a.indexOf(".")) {
+            let o = a.split(".")[0],
+                q = a.split(".").slice(1).join("."),
+                p = this.get(o);
+            if (p) {
+                p[q] = c;
+                b.setItem(o, JSON.stringify(p));
+            }
+        } else {
+            b.setItem(a, JSON.stringify(c));
+        }
         return this.get(a)
     };
     this.key = function(a) {
@@ -88,21 +98,20 @@ let routeHandler = function() {
             datatype: 'json',
             success: function(data) {
                 callback(data); // return data in callback
-                local.set('lastRequest', data);
+                local.set('lastRequest', data); // used to return someone to the route they requested after login
             },
             error: function(xhr, status, error) {
                 callback(xhr); // error occur 
-                local.set('lastRequest', xhr);
             }
         });
     }
 
-    this.authorize = function(user, app) {
+    this.authorize = function(app, user) { // will return the requested app unless the user isn't logged in or is unauthorized
         if (!user) {
             user = local.get('user');
         }
         if(!app) {
-            app = route.get().app; 
+            app = route.get(); 
         }
         if (user.session.timeout) {
             return local.get('config').routing.noUser
@@ -110,12 +119,12 @@ let routeHandler = function() {
             if (user.level < app.level) {
                 return local.get('config').routing.noAccess
             } else {
-                return app;
+                return app.app;
             }
         }
     }
     this.change = function(url, title) {
-
+        // this.authorize(url);
     }
 }
 let route = new routeHandler();

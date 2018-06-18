@@ -24,6 +24,7 @@
     "routing" : {
         "noUser" : "login",
         "noAccess" : "error",
+        "landing" : "dashboard",
         "alias" : {
             "login" : ["log-in", "signin", "sign-in", "enter", "l"],
             "profile" : ["account", "user", "my-profile", "my-account", "me", "p"],
