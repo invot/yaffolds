@@ -1,0 +1,17 @@
+.modal.show.d-block.bg-dark(aria-hidden="false", role="dialog", tabindex="-1")
+    .modal-dialog.modal-dialog-centered(role="document")
+        .modal-content.bg-transparent.border-0
+            .logo-holder.p-2.text-center
+                img(src="/img/b-w-vert-logo2b.gif" height="70" width="auto")
+            .signin.bg-white.p-4.mt-2.mb-2.shadow.col-8.offset-2
+                x-hbs#login
+                    .text-grey.fa-2x.text-center.p4
+                        i.fas.fa-spinner.fa-spin
+            .options-holder
+                ul.nav.pt-2.pb-4.justify-content-center
+                    li.nav-item
+                        a.text-light.nav-link(href="https://uaon.wisconsin.gov/WAMS/AccountRecoveryController?RSAction=FSI" target="_blank") Forgot Password
+                    li.nav-item
+                        a.text-light.nav-link(href="https://uaon.wisconsin.gov/WAMS/SelfRegController" target="_blank") Create Account
+
+

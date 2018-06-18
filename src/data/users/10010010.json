@@ -1,0 +1,65 @@
+{
+    "alias": "mayday",
+    "dob": "02-12-1982",
+    "PIN": 10010010,
+    "password" : "danson",
+    "level": 2,
+    "groups": [12345,12344,12343],
+    "worker": 346890,
+    "name": {
+        "first": "Samuel",
+        "last": "Malone",
+        "mi": "A",
+        "suffix": ""
+    },
+    "profile":{
+        "primaryPhone" : {
+            "isInternational": false,
+            "type" : "Home",
+            "countryCode" : "",
+            "number" : "908-255-5521",
+            "canText" : false,
+            "canVoicemail": true
+        },
+        "secondaryPhone" : {
+            "isInternational": false,
+            "type" : "Mobile",
+            "countryCode" : "",
+            "number" : "908-455-5523",
+            "canText" : true,
+            "canVoicemail": true
+        },
+        "tritaryPhone" : {
+            "isInternational": false,
+            "type" : "",
+            "countryCode" : "",
+            "number" : "",
+            "canText" : false,
+            "canVoicemail": false
+        },
+        "email" : {
+            "primary" : "mayday82@gmail.com",
+            "secondary" : "samuel.malone@bullandfinchpub.com"
+        },
+        "preferredMethod" : "email",
+        "isHomeless" : false,
+        "isMailingHome" : false,
+        "mailingAddress" : {
+            "isInternational": false,
+            "street" : "84 Beacon St",
+            "apt" : "",
+            "city" : "Boston",
+            "state" : "MA",
+            "zip" : "02108"
+        },
+        "homeAddress" : {
+            "isInternational": false,
+            "street" : "10 W Cedar St",
+            "apt" : "",
+            "city" : "Boston",
+            "state" : "MA",
+            "zip" : "02108"
+        }
+    },
+    "session": {}
+}

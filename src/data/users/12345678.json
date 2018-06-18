@@ -1,0 +1,65 @@
+{
+    "alias": "lebec",
+    "dob": "06-12-1984",
+    "PIN": 12345678,
+    "password" : "perlman",
+    "level": 1,
+    "groups": [12346,12344],
+    "worker": 346890,
+    "name": {
+        "first": "Carla",
+        "last": "Tortelli",
+        "mi": "M",
+        "suffix": ""
+    },
+    "profile":{
+        "primaryPhone" : {
+            "isInternational": false,
+            "type" : "Mobile",
+            "countryCode" : "",
+            "number" : "223-444-5566",
+            "canText" : true,
+            "canVoicemail": false
+        },
+        "secondaryPhone" : {
+            "isInternational": false,
+            "type" : "",
+            "countryCode" : "",
+            "number" : "",
+            "canText" : false,
+            "canVoicemail": false
+        },
+        "tritaryPhone" : {
+            "isInternational": false,
+            "type" : "",
+            "countryCode" : "",
+            "number" : "",
+            "canText" : false,
+            "canVoicemail": false
+        },
+        "email" : {
+            "primary" : "neelebec@gmail.com",
+            "secondary" : ""
+        },
+        "preferredMethod" : "text,",
+        "isHomeless" : false,
+        "isMailingHome" : true,
+        "mailingAddress" : {
+            "isInternational": false,
+            "street" : "14 Winfield St",
+            "apt" : "",
+            "city" : "Boston",
+            "state" : "MA",
+            "zip" : "02127"
+        },
+        "homeAddress" : {
+            "isInternational": false,
+            "street" : "",
+            "apt" : "",
+            "city" : "",
+            "state" : "",
+            "zip" : ""
+        }
+    },
+    "session": {}
+}

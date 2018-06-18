@@ -1,0 +1,22 @@
+<form class="form-signin" onsubmit="/apps/login/login.js" id="login">
+  <p class="small mb-4 text-center border-bottom text-muted">Login using your WAMS ID</p>
+  {{#if error.name}}
+  <div class="alert alert-danger" role="alert">
+      <strong>{{error.name}}</strong><br />
+      <span>{{error.details}}</span>
+  </div>
+  {{/if}}
+  <div class="input-group mb-3">
+    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-user fa-fw"></i></span></div>
+    <input class="form-control mb-0" id="inputEmail" type="text" placeholder="User Name" required="required" autofocus="autofocus" value="{{{userName}}}" />
+  </div>
+  <div class="input-group mb-3">
+    <div class="input-group-prepend"><span class="input-group-text"><i class="fas fa-key fa-fw"></i></span></div>
+    <input class="form-control mb-0" id="inputPassword" type="password" placeholder="Password" required="required" value="{{{password}}}"/>
+  </div>
+  <div class="pt-2 row">
+    <div class="col-8 col-md-6">
+      <button class="btn btn-primary btn-block" type="submit"><i class="fas fa-sign-in-alt"></i>&nbsp; Sign in &nbsp;</button>
+    </div>
+  </div>
+</form>

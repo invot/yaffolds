@@ -1,0 +1,36 @@
+{
+    "$schema": {
+        "session" :{
+            "timeout" : "minutes of inactivity until session expires",
+            "warning" : "minutes until user is warned session will expire",
+            "strict" : "if true, will only log route changes as user activity"   
+        },
+        "routing" :{
+            "noUser" : "if no session data exists, the name of the app to direct the user to",
+            "noAccess" : "if the user doesn't have access to a route, the name of the app they will be directed to instead, if blank, the user will be redirected to the root of the app",
+            "alias": {
+                "app-name" : ["array of aliases that will redirect you to that app"]
+            }
+        },
+        "cache": {
+            "expire" : "minutes until the information in local storage will be considered outdated"
+        }
+    },
+    "session" : {
+        "timeout" : 15,
+        "warning" : 10,
+        "strict" : false 
+    },
+    "routing" : {
+        "noUser" : "login",
+        "noAccess" : "error",
+        "alias" : {
+            "login" : ["log-in", "signin", "sign-in", "enter", "l"],
+            "profile" : ["account", "user", "my-profile", "my-account", "me", "p"],
+            "dashboard" : ["index", "home", "main", ""]
+        }
+    },
+    "cache" : {
+        "expire" : 60
+    }
+}

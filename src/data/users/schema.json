@@ -1,0 +1,67 @@
+{
+    "alias": "their username",
+    "dob": "MM-DD-YYYY",
+    "PIN": "9-digit number",
+    "password" : "this would probably be encrypted in the real world",
+    "level": "digit from 0-10 to determine security level",
+    "groups": ["array of group numbers"],
+    "worker": "id of worker assigned to participant",
+    "name": {
+        "first": "First Name",
+        "last": "Last Name",
+        "mi": "Middle Initial",
+        "suffix": "optional"
+    },
+    "profile":{
+        "primaryPhone" : {
+            "isInternational": "booleen",
+            "type" : "Home, Mobile, Work, or Other",
+            "countryCode" : "3-digit max",
+            "number" : "10-digit number",
+            "canText" : "booleen",
+            "canVoicemail": "booleen"
+        },
+        "secondaryPhone" : {
+            "isInternational": "booleen",
+            "type" : "Home, Mobile, Work, or Other",
+            "countryCode" : "3-digit max",
+            "number" : "10-digit number",
+            "canText" : "booleen",
+            "canVoicemail": "booleen"
+        },
+        "tritaryPhone" : {
+            "isInternational": "booleen",
+            "type" : "Home, Mobile, Work, or Other",
+            "countryCode" : "3-digit max",
+            "number" : "10-digit number",
+            "canText" : "booleen",
+            "canVoicemail": "booleen"
+        },
+        "email" : {
+            "primary" : "",
+            "secondary" : ""
+        },
+        "preferredMethod" : "either phone, text, or email",
+        "isHomeless" : "booleen",
+        "isMailingHome" : "booleen",
+        "mailingAddress" : {
+            "isInternational": "booleen",
+            "street" : "",
+            "apt" : "",
+            "city" : "",
+            "state" : "",
+            "zip" : ""
+        },
+        "homeAddress" : {
+            "isInternational": "booleen",
+            "street" : "",
+            "apt" : "",
+            "city" : "",
+            "state" : "",
+            "zip" : ""
+        }
+    },
+    "session": {
+        "$leaveBlank" : "this is populated by the browser" 
+    }
+}

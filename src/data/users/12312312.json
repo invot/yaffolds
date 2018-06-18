@@ -1,0 +1,65 @@
+{
+    "alias": "thepostman",
+    "dob": "10-20-1975",
+    "PIN": 12312312,
+    "password" : "ratzenberger",
+    "level": 2,
+    "groups": [12345],
+    "worker": 346890,
+    "name": {
+        "first": "Clifford",
+        "last": "Calvin",
+        "mi": "C",
+        "suffix": "Jr"
+    },
+    "profile":{
+        "primaryPhone" : {
+            "isInternational": false,
+            "type" : "Mobile",
+            "countryCode" : "",
+            "number" : "223-444-5566",
+            "canText" : true,
+            "canVoicemail": false
+        },
+        "secondaryPhone" : {
+            "isInternational": false,
+            "type" : "",
+            "countryCode" : "",
+            "number" : "",
+            "canText" : false,
+            "canVoicemail": false
+        },
+        "tritaryPhone" : {
+            "isInternational": false,
+            "type" : "",
+            "countryCode" : "",
+            "number" : "",
+            "canText" : false,
+            "canVoicemail": false
+        },
+        "email" : {
+            "primary" : "calvin.clifford@gmail.com",
+            "secondary" : ""
+        },
+        "preferredMethod" : "text,",
+        "isHomeless" : false,
+        "isMailingHome" : true,
+        "mailingAddress" : {
+            "isInternational": false,
+            "street" : "12 Winfield St",
+            "apt" : "",
+            "city" : "Boston",
+            "state" : "MA",
+            "zip" : "02127"
+        },
+        "homeAddress" : {
+            "isInternational": false,
+            "street" : "",
+            "apt" : "",
+            "city" : "",
+            "state" : "",
+            "zip" : ""
+        }
+    },
+    "session": {}
+}

@@ -1,0 +1,12 @@
+{
+    "$schema": {
+        "default" : "the view the app will default to - if single-view, leave blank",
+        "code" : "error code",
+        "title" : "the page title / overwritten by the view's title when present",
+        "url" : "optional: masks the URL route to be different from the app name"
+    },
+    "default":"",
+    "code": 000,
+    "title": "Error",
+    "url" : ""
+}
