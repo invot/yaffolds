@@ -19,6 +19,7 @@ The purpose of Yaffolds is to provide a consistent file structure, easy to under
 ## SASS, Fontawesome 5, and Bootstrap 4.1
 - Customized build of [Bootstrap](https://getbootstrap.com/) 4.1 automatically compiled, optimized, and uglified for your convience
 - Fontawesome 5 providing an extensive library of [beautiful icons](https://fontawesome.com/icons?from=io) 
+
 ## Gulp to make your life easier
 - Compiles your `*.pug` pages
 - Compiles your `*.scss` files

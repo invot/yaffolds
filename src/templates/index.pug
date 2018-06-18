@@ -17,7 +17,11 @@ html
     //- script(src='/js/vendors.min.js')
 
   body
-  
-    #loading
+
+    #loading.modal.d-block.bg-dark(tabindex='-1', role='loading')
+        .modal-dialog.modal-dialog-centered(role='document')
+            .modal-content.text-center.border-0.bg-transparent
+                    .text-light.fa-4x
+                        i.fas.fa-spinner.fa-spin
     main#main
     script(src='/js/main.min.js')

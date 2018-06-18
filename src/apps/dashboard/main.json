@@ -1,11 +1,11 @@
-{   
-    "view" : "blank",
-    "landing" : "list",
-    "userName" : "",
-    "password" : "",
-    "title" : "A brief overview of your information",
-    "error"  : {
-        "name": "",
-        "description": ""
-    }
+{
+    "$schema": {
+        "default" : "the view the app will default to - if single-view, leave blank",
+        "title" : "the page title / overwritten by the view's title when present",
+        "url" : "optional: masks the URL route to be different from the app name"
+    },
+    "default":"",
+    "title": "Dashboard",
+    "url" : "",
+    "level": 1
 }

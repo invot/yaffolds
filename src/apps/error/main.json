@@ -5,8 +5,9 @@
         "title" : "the page title / overwritten by the view's title when present",
         "url" : "optional: masks the URL route to be different from the app name"
     },
+    "level" : -1,
     "default":"",
-    "code": 000,
+    "code": 0,
     "title": "Error",
     "url" : ""
 }

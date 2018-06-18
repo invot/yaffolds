@@ -6,5 +6,6 @@
     },
     "default":"list",
     "title": "Example App",
-    "url" : ""
+    "url" : "",
+    "level": 1
 }

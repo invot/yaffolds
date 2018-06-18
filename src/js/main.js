@@ -37,7 +37,7 @@ let localStorageHandler = function() {
         return a
     }
 };
-let lsh = new localStorageHandler();
+let local = new localStorageHandler();
 
 // Constructor that renders handlebars files :)
 let HandlesHandler = function(e, a, d) { // (elementID, appname, data)
@@ -88,21 +88,31 @@ let routeHandler = function() {
             datatype: 'json',
             success: function(data) {
                 callback(data); // return data in callback
+                local.set('lastRequest', data);
             },
             error: function(xhr, status, error) {
-                callback(xhr.status); // error occur 
+                callback(xhr); // error occur 
+                local.set('lastRequest', xhr);
             }
         });
     }
 
     this.authorize = function(user, app) {
-        // if (v) {
-        //     let pth = Object.values(l).filter(x => x).join('/');
-        //     window.location.hash = '/' + pth
-        // } else {
-        //     window.location.hash = '/login'
-        // }
-        // return route.get();
+        if (!user) {
+            user = local.get('user');
+        }
+        if(!app) {
+            app = route.get().app; 
+        }
+        if (user.session.timeout) {
+            return local.get('config').routing.noUser
+        } else {
+            if (user.level < app.level) {
+                return local.get('config').routing.noAccess
+            } else {
+                return app;
+            }
+        }
     }
     this.change = function(url, title) {
 
@@ -129,17 +139,35 @@ let blankUser = new Object({
 });
 
 // Loads user data into localstorage
-if (!lsh.get('user')) {
-    lsh.set('user', blankUser);
+if (!local.get('user')) {
+    local.set('user', blankUser);
 }
 
 // Loads config data into localstorage
-if(!lsh.get('config')) {
+if(!local.get('config')) {
     $.getJSON('/data/config.json', function(r) {
-        lsh.set('config', r);
+        local.set('config', r);
     })
 }
 
+// Dom-specific functions
 
+let loadingHandler = function() {
+    let t = $('#loading'),
+        m = $('#main');
+    this.hide = function(speed,complete) {
+        t.slideUp(speed,function(){t.removeClass('d-block'); complete});
+    }
+    this.show = function(speed,complete) {
+        t.slideDown(speed,function(){t.addClass('d-block'); complete})
+    }
+    this.pageIn = function(speed,complete) {
+        m.fadeIn(speed,function(){complete});
+    }
+    this.pageOut = function(speed,complete) {
+        m.fadeOut(speed,function(){complete});
+    }
+}
+let loading = new loadingHandler();
 
 // window.onhashchange = route();
