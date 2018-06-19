@@ -126,15 +126,13 @@ let routeHandler = function() {
         });
     }
 
-    this.authorize = function(app, user) { // will return the requested app unless the user isn't logged in or is unauthorized
+    this.authorize = function(user, app) { // returns a login or error page if the use isn't authorized to view the requested app
         if (!user) {
             user = local.get('user');
         }
         if(!app) {
             app = route.get(); 
         }
-        console.log(app);
-        console.log(user);
         if (user['session']['timeout']) {
             return local.get('config').routing.noUser
         } else {
@@ -146,7 +144,14 @@ let routeHandler = function() {
         }
     }
     this.change = function(url, title) {
-        // this.authorize(url);
+        url = this.authorize(null, url);
+        this.request(url, function(app){
+            if (!title) {
+                title = app.title;
+            }
+            let site = local.get('config').project.name;
+            history.pushState({}, site + " | " + title,'/#/'+ app.name.toLowerCase());
+        });
     }
 }
 let route = new routeHandler();

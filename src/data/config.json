@@ -16,6 +16,12 @@
             "expire" : "minutes until the information in local storage will be considered outdated"
         }
     },
+    "project" : {
+        "name": "Yaffolds",
+        "author" : "",
+        "company" : "",
+        "motto" : ""
+    },
     "session" : {
         "timeout" : 15,
         "warning" : 10,
