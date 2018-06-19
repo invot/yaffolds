@@ -2,7 +2,6 @@
 
 /* -- DEFINITIONS -- */
 
-
 // Local sotrage handler with the following methods: get, set, data, key, remove, clear
 let localStorageHandler = function() {
     let b = window.localStorage;
@@ -14,34 +13,55 @@ let localStorageHandler = function() {
             return b.getItem(a)
         }
     };
-    this.set = function(a, c) { // Update a single value or object
-        if (~a.indexOf(".")) {
-            let o = a.split(".")[0],
-                q = a.split(".").slice(1).join("."),
-                p = this.get(o);
-            if (p) {
-                p[q] = c;
-                b.setItem(o, JSON.stringify(p));
-            }
+    this.set = function(path, value) { // Update a single value or object
+        if (~path.indexOf(".")) {
+            let o = path.split(".")[0],
+                p = this.get(o),
+                q = path.split(".").slice(1);
+            switch (q.length) { // There has to be a better way to do this. Don't look at me. I'm ashamed. 
+                case 1:
+                    p[q[0]] = value; 
+                    break;
+                case 2:
+                    p[q[0]][q[1]] = value; 
+                    break;
+                case 3:
+                    p[q[0]][q[1]][q[2]] = value; 
+                    break;
+                case 4:
+                    p[q[0]][q[1]][q[2]][q[3]] = value; 
+                    break;
+                case 5:
+                    p[q[0]][q[1]][q[2]][q[3]][q[4]] = value; 
+                    break;
+                case 6: // If your object goes deeper than this, reconsider your life choices. 
+                    p[q[0]][q[1]][q[2]][q[3]][q[4]][q[5]] = value; 
+                    break;
+                default:  
+                    return "error";
+                    break;  
+            }  
+            b.setItem(o, JSON.stringify(p));
+            return p;
         } else {
-            b.setItem(a, JSON.stringify(c));
+           b.setItem(path, JSON.stringify(value));
+            return this.get(path);
         }
-        return this.get(a)
     };
     this.key = function(a) {
         if ("number" === typeof a) return b.key(a)
     };
-    this.data = function() {
+    this.data = function() { // I honestly forgot what that is good for
         for (let a = 0, c = []; b.key(a);) c[a] = [b.key(a), this.get(b.key(a))], a++;
         return c.length ? c : null
     };
-    this.remove = function(a) {
+    this.remove = function(a) { // removes a single object from localstorage
         let c = !1;
         a = "number" === typeof a ? this.key(a) : a;
         a in b && (c = !0, b.removeItem(a));
         return c
     };
-    this.clear = function() {
+    this.clear = function() { // clears ALL your localstorage
         let a = b.length;
         b.clear();
         return a
@@ -50,7 +70,7 @@ let localStorageHandler = function() {
 let local = new localStorageHandler();
 
 // Constructor that renders handlebars files :)
-let HandlesHandler = function(e, a, d) { // (elementID, appname, data)
+let HandlesHandler = function(e, a, d) { // (elementID, appname, json data)
     this.el = "string" == typeof e ? document.getElementById(e) : e, 
     this.tempName = a, 
     this.data = d || null, 
@@ -113,7 +133,9 @@ let routeHandler = function() {
         if(!app) {
             app = route.get(); 
         }
-        if (user.session.timeout) {
+        console.log(app);
+        console.log(user);
+        if (user['session']['timeout']) {
             return local.get('config').routing.noUser
         } else {
             if (user.level < app.level) {
