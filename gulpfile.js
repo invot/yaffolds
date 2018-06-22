@@ -46,7 +46,7 @@ gulp.task('js', (b) => {
       gulp.src(['./src/js/vendors/*.js','./src/js/vendors/plugins/*.js', './src/js/main.js']),
       // babel({ presets: ['env'] }), // CONVERT TO ES5
       concat('main.min.js'),
-      uglify(),
+      // uglify(),
       gulp.dest('./dist/js/')
     ],
     b

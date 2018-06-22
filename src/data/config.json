@@ -1,5 +1,11 @@
 {
     "$schema": {
+        "project" : {
+            "name": "The name of the project",
+            "author" : "Who made this",
+            "company" : "company name",
+            "motto" : "the motto"
+        },
         "session" :{
             "timeout" : "minutes of inactivity until session expires",
             "warning" : "minutes until user is warned session will expire",
