@@ -1,22 +1,33 @@
-
+Object.isObject = function(obj) {
+    return obj && obj.constructor === this || false;
+};
 
 /* -- DEFINITIONS -- */
 
 // Local sotrage handler with the following methods: get, set, data, key, remove, clear
 let localStorageHandler = function() {
-    let b = window.localStorage;
+    let b = window.localStorage,
+       _t = this;
     this.length = b.length;
-    this.get = function(a) {
-        try {
-            return JSON.parse(b.getItem(a))
-        } catch (c) {
-            return b.getItem(a)
-        }
-    };
-    this.set = function(path, value) { // Update a single value or object
+
+    _t.get = function(path) {
         if (~path.indexOf(".")) {
             let o = path.split(".")[0],
-                p = this.get(o),
+                p = JSON.parse(b.getItem(o)),
+                q = path.split(".").slice(1);
+                return q.reduce((o,i)=>o[i], p);
+        } else {
+            try {
+                return JSON.parse(b.getItem(path))
+            } catch (c) {
+                return b.getItem(path)
+            }
+        }
+    };
+    _t.set = function(path, value) { // Update a single value or object
+        if (~path.indexOf(".")) {
+            let o = path.split(".")[0],
+                p = _t.get(o),
                 q = path.split(".").slice(1);
             switch (q.length) { // There has to be a better way to do this. Don't look at me. I'm ashamed. 
                 case 1:
@@ -45,23 +56,20 @@ let localStorageHandler = function() {
             return p;
         } else {
            b.setItem(path, JSON.stringify(value));
-            return this.get(path);
+            return _t.get(path);
         }
     };
-    this.key = function(a) {
+    _t.key = function(a) { 
         if ("number" === typeof a) return b.key(a)
     };
-    this.data = function() { // I honestly forgot what that is good for
-        for (let a = 0, c = []; b.key(a);) c[a] = [b.key(a), this.get(b.key(a))], a++;
-        return c.length ? c : null
-    };
-    this.remove = function(a) { // removes a single object from localstorage
+
+    _t.remove = function(a) { // removes a single object from localstorage
         let c = !1;
         a = "number" === typeof a ? this.key(a) : a;
         a in b && (c = !0, b.removeItem(a));
         return c
     };
-    this.clear = function() { // clears ALL your localstorage
+    _t.clear = function() { // clears ALL your localstorage
         let a = b.length;
         b.clear();
         return a
