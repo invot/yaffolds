@@ -4,7 +4,7 @@ Yet-Another-Scaffolding environment, or Yaffolds, is designed to kick-start the 
 
 ## Solid foundations for modern development
 
-The purpose of Yaffolds is to provide a consistent file structure, easy to understand code, and methods that simply make sense and save time. A Yaffolds-based project, upon completion, should allow for an easy hand-off between front-end and back-end developers. 
+The purpose of Yaffolds is to provide a consistent file structure, easy to understand code, and methods that simply make sense and save time. A Yaffolds-based project, upon completion, should allow for an easy hand-off between front-end and back-end developers. Cutting-edge technologies take a back seat to tried-and-true solutions with extensive documentation and a large user-base. It should be easy for any developer to take a look at the code and hit the ground running. Most of the complicated stuff is abstracted through easy-to-understand handlers and methods. 
 
 
 # Features

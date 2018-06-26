@@ -4,8 +4,22 @@
         "title" : "the page title / overwritten by the view's title when present",
         "url" : "optional: masks the URL route to be different from the app name"
     },
-    "default":"",
-    "title": "Login",
+    "default":"list",
+    "title": "Example App",
     "url" : "",
-    "level": -1
+    "level": 1,
+    "views" : {
+        "edit": {
+
+        },
+        "embed": {
+
+        },
+        "list":{
+
+        },
+        "single":{
+            
+        }
+    }
 }
