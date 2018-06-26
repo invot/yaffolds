@@ -46,7 +46,7 @@ Even "mock-server" might be a strong term. Simple JSON files take the place of S
 
 ## Aggressive request-limiting
 
-Requesting data is expensive. Yaffolds will prevent redundant requests by only asking for data when it doesn't have a recent version. And don't worry - Yaffolds encrypts what it keeps in local storage, keeping the data secure.  
+Requesting data is expensive. Yaffolds will prevent redundant requests by only asking for data when it doesn't have a recent version. Data can be stored in `localStorage` or `sessionStoragte` or both! The information is protected by [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) automatically, keeping locally-stored data secure. 
 
 ## Really awesome config file
 
@@ -54,7 +54,7 @@ Configure app settings all in one file. Timeouts, default routes, security, and 
 
 ## Universal Print Styling
 
-Pressing `ctrl+p` at any time will result in a beautiful result. A print-specific header and footer is loaded throughout the application. 
+Pressing `ctrl+p` at any time will result in something beautiful. A print-specific header and footer is loaded throughout the application. 
 
 
 # Requirements

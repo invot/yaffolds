@@ -5,8 +5,9 @@ Object.isObject = function(obj) {
 /* -- DEFINITIONS -- */
 
 // Local sotrage handler with the following methods: get, set, data, key, remove, clear
-let localStorageHandler = function() {
-    let b = window.localStorage,
+// if session is true, then storage scoped to the current active tab 
+let storageHandler = function(session) { 
+    let b = session ? window.sessionStorage : window.localStorage,
        _t = this;
     this.length = b.length;
 
@@ -63,19 +64,19 @@ let localStorageHandler = function() {
         if ("number" === typeof a) return b.key(a)
     };
 
-    _t.remove = function(a) { // removes a single object from localstorage
+    _t.remove = function(a) { // removes a single object from storage
         let c = !1;
         a = "number" === typeof a ? this.key(a) : a;
         a in b && (c = !0, b.removeItem(a));
         return c
     };
-    _t.clear = function() { // clears ALL your localstorage
+    _t.clear = function() { // clears everything in storage
         let a = b.length;
         b.clear();
         return a
     }
 };
-let local = new localStorageHandler();
+let local = new storageHandler(false);
 
 // Constructor that renders handlebars files :)
 let HandlesHandler = function(e, a, d) { // (elementID, appname, json data)
@@ -123,13 +124,13 @@ let routeHandler = function() {
         if (!callback) {
             callback = function(e){return e};
         }
-        let view = ""
-        if (url.id) {
-            view = "single/"
-        }
-        if (url.view) {
-            view = url.view + "/"
-        }
+        // let view = ""
+        // if (url.id) {
+        //     view = "single/"
+        // }
+        // if (url.view) {
+        //     view = url.view + "/"
+        // }
         local.set( 'lastRequest', url );
         let l = local.get('lastRequest');
         $.ajax({
