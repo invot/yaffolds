@@ -46,7 +46,7 @@ Even "mock-server" might be a strong term. Simple JSON files take the place of S
 
 ## Aggressive request-limiting
 
-Requesting data is expensive. Yaffolds will prevent redundant requests by only asking for data when it doesn't have a recent version. Data can be stored in `localStorage` or `sessionStoragte` or both! The information is protected by [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy) automatically, keeping locally-stored data secure. 
+Requesting data is expensive. Yaffolds will prevent redundant requests by only asking for data when it doesn't have a recent version. Data can be stored in `localStorage` or `sessionStoragte` or both! The information is protected by [same-origin policy](https://developer.mozilla.org/en-US/docs/Web/Security/Same-origin_policy#Cross-origin_data_storage_access) automatically, keeping locally-stored data secure. 
 
 ## Really awesome config file
 
