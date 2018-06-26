@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/version-0.2.1-red.svg" alt="version"> <img src="https://img.shields.io/travis/USER/REPO.svg" alt="build">
+<img src="https://img.shields.io/badge/version-0.2.1-red.svg" alt="version"> <img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build">
 
 # Yaffolds
 
