@@ -1,7 +1,7 @@
 <img src="https://img.shields.io/badge/version-0.2.1-red.svg" alt="version"> <img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build">
 
 
-<p align="center"><img src="src/img/logo.png" title="Yaffolds"></p>
+<p align="center"><img src="src/img/logo.png" title="Yaffolds" width="200" height="255"></p>
 
 Yet-Another-Scaffolding environment, or Yaffolds, is designed to kick-start the front-end development of any modern web project. 
 
