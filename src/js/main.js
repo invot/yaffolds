@@ -2,6 +2,10 @@ Object.isObject = function(obj) {
     return obj && obj.constructor === this || false;
 };
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 /* -- DEFINITIONS -- */
 
 // Local sotrage handler with the following methods: get, set, data, key, remove, clear
@@ -101,8 +105,8 @@ let HandlesHandler = function(e, a, d) { // (elementID, appname, json data)
 // This will check if the files needed to create your route 
 // exists. If not, it will direct you to an error page or login.
 let routeHandler = function() {
-    let _rh = this;
-    let makeRouteData = function(url) {
+    let _rh = this,
+    makeRouteData = function(url) {
         let hash = url.replace('#','').split('/').filter(x => x);
         r = new Object();
         r.hash = window.location.hash,
@@ -113,17 +117,60 @@ let routeHandler = function() {
         r.mode = hash[2];
         return r;
     }
-    this.get = function() { // returns the current route as an object
+
+    _rh.getURL = function() { // returns the current route as an object
         let url = window.location.hash;
         return makeRouteData(url);
     }
-    this.request = function(url, callback) {
+
+    _rh.changeURL = function(url, title) {
+        if (!url) {
+            url = _rh.getURL();
+        } else {
+            url = makeRouteData(url);
+        }
+        if (!title) {
+            title = url.app;
+        }
+        let str = url.app;
+        url.view ? str = str + '/' + url.view: null;
+        url.id ? str = str + '/' + url.id : null;
+        url.mode ? str = str + '/' + url.mode: null;
+        document.title = local.get('config.project.name') + " | " + title.capitalize();
+        history.pushState({}, 
+            document.title,
+            '/#/'+ str + '/'
+        );
+    }
+
+    _rh.getApp = function(url, callback) {
         if (!url) {
             url = _rh.get();
         }
-        if (!callback) {
-            callback = function(e){return e};
-        }
+        let l = local.set( 'lastRequest', url );
+        $.ajax({
+            url: "/apps/" + l.app + "/config.json", // server url
+            type: 'GET', 
+            datatype: 'json',
+            success: function(data) {
+                l = local.set('lastRequest.data', data); // used to return someone to the route they requested after login
+                return callback(l); // return data in callback
+            },
+            error: function(xhr, status, error) {
+                l = local.set('lastRequest.data', xhr); 
+                return callback(l); // error occur 
+            }
+        });
+        
+    }
+
+    _rh.request = function(url, callback) {
+        // if (!url) {
+        //     url = _rh.get();
+        // }
+        // if (!callback) {
+        //     callback = function(e){return e};
+        // }
         // let view = ""
         // if (url.id) {
         //     view = "single/"
@@ -131,26 +178,26 @@ let routeHandler = function() {
         // if (url.view) {
         //     view = url.view + "/"
         // }
-        local.set( 'lastRequest', url );
-        let l = local.get('lastRequest');
-        $.ajax({
-            url: "/apps/" + l.app + view + "/main.json", // server url
-            type: 'GET', //POST or GET 
-            datatype: 'json',
-            success: function(data) {
-                l = local.set('lastRequest.data', data); // used to return someone to the route they requested after login
-                console.log(l);
-                return callback(l); // return data in callback
-            },
-            error: function(xhr, status, error) {
-                l = local.set('lastRequest.data', xhr); 
-                console.log(l);
-                return callback(l); // error occur 
-            }
-        });
+        // local.set( 'lastRequest', url );
+        // let l = local.get('lastRequest');
+        // $.ajax({
+        //     url: "/apps/" + l.app + view + "/main.json", // server url
+        //     type: 'GET', //POST or GET 
+        //     datatype: 'json',
+        //     success: function(data) {
+        //         l = local.set('lastRequest.data', data); // used to return someone to the route they requested after login
+        //         console.log(l);
+        //         return callback(l); // return data in callback
+        //     },
+        //     error: function(xhr, status, error) {
+        //         l = local.set('lastRequest.data', xhr); 
+        //         console.log(l);
+        //         return callback(l); // error occur 
+        //     }
+        // });
     }
 
-    this.authorize = function(user, url) { // returns a login or error page if the use isn't authorized to view the requested app
+    _rh.authorize = function(user, url) { // returns a login or error page if the use isn't authorized to view the requested app
         if (!user) {
             user = local.get('user');
         }
@@ -167,7 +214,8 @@ let routeHandler = function() {
             }
         }
     }
-    this.alias = function(url) { // checks to see if your url is a known alias for an app
+
+    _rh.alias = function(url) { // checks to see if your url is a known alias for an app
         if (!url) {
             url = _rh.get();
         }
@@ -184,40 +232,20 @@ let routeHandler = function() {
         else
             { return url }
     }
-    this.change = function(url, title) {
-        if (!url) {
-            url = _rh.get();
-        } else {
-            url = makeRouteData(url);
-        }
-        if (!title) {
-            title = url.app;
-        }
-        url = this.authorize(null, url);
-        this.request(url, function(req){
-            console.log(req);
-            if (!title) {
-                title = req.data.title;
-            }
-            history.pushState({}, 
-                local.get('config').project.name + " | " + title,
-                '/#/'+ req.app + '/'
-            );
-        });
-    }
-    this.loadApp = function() {
 
-    }
+    // _rh.loadApp = function() {
 
-    this.loadView = function() {
+    // }
 
-    }
+    // _rh.loadView = function() {
 
-    this.loadRecord = function() {
+    // }
 
-    }
+    // _rh.loadRecord = function() {
+
+    // }
 }
-let route = new routeHandler();
+const route = new routeHandler();
 
 // Create user and session info if it doesn't exist
 let blankUser = new Object({
@@ -272,4 +300,4 @@ let loading = new loadingHandler();
 
 
 // Initialize router
-// window.onhashchange = route.change(); 
+window.onhashchange = route.changeURL(); 

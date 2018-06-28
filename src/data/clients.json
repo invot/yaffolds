@@ -1,0 +1,54 @@
+{
+    "clients":[
+        {
+            "name": "Wayne Enterprises",
+            "id": "WYNE",
+            "address" : {
+                "street" : "6709 Meek Rd",
+                "city" : "Lodi",
+                "state" : "WI",
+                "zip" : "53555"
+            }
+        },
+        {
+            "name": "Stark Industries",
+            "id": "STRK",
+            "address" : {
+                "street" : "501 S Airport St",
+                "city" : "Terre Haute",
+                "state" : "IN",
+                "zip" : "47803"
+            }
+        },
+        {
+            "name": "Aperture Laboratories",
+            "id": "APLB",
+            "address" : {
+                "street" : "W223N608 Saratoga Dr",
+                "city" : "Waukesha",
+                "state" : "WI",
+                "zip" : "53186"
+            }
+        },
+        {
+            "name": "Oscorp",
+            "id": "OSCO",
+            "address" : {
+                "street" : "300 W 57th St",
+                "city" : "New York",
+                "state" : "NY",
+                "zip" : "10019"
+            }
+        },
+        {
+            "name": "LexCorp",
+            "id": "LXCO",
+            "address" : {
+                "street" : "3604 Glendora Rd",
+                "city" : "New Tory",
+                "state" : "MI",
+                "zip" : "49119"
+            }
+        }
+    ]
+}

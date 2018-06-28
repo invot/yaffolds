@@ -4,22 +4,66 @@
         "title" : "the page title / overwritten by the view's title when present",
         "url" : "optional: masks the URL route to be different from the app name"
     },
-    "default":"list",
-    "title": "Example App",
-    "url" : "",
-    "level": 1,
+    "title": "Timesheet",
+    "url" : "time",
+    "defaults": {
+        "view" : "list",
+        "id" : "single",
+        "mode" : "",
+        "scope" : "",
+        "timeframe" : "",
+        "sort" : "",
+        "level": 1
+    },
+    "data":["clients, timecodes"],
+    "record":["example, users"],
     "views" : {
         "edit": {
-
+            "title" : "New ",
+            "mode" : "",
+            "scope" : "",
+            "timeframe" : "",
+            "sort" : "",
+            "level": 1,
+            "canRoute" : true
         },
         "embed": {
-
+            "title" : "",
+            "mode" : "",
+            "scope" : "",
+            "timeframe" : "",
+            "sort" : "",
+            "level": 1,
+            "canRoute" : false
         },
-        "list":{
-
+        "list": {
+            "title" : "",
+            "mode" : "",
+            "scope" : "",
+            "timeframe" : "",
+            "sort" : "",
+            "level": 1,
+            "canRoute" : true
         },
-        "single":{
-            
+        "single": {
+            "title" : "",
+            "mode" : "",
+            "scope" : "",
+            "timeframe" : "",
+            "sort" : "",
+            "level": 1,
+            "canRoute" : true
+        }
+    },
+    "modes": {
+        "edit" : {
+            "title" : "",
+            "mode" : "",
+            "scope" : "",
+            "timeframe" : "",
+            "sort" : "",
+            "level": 1,
+            "canRoute" : false
         }
     }
 }
