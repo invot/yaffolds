@@ -118,20 +118,18 @@ let routeHandler = function() {
         return r;
     }
 
-    _rh.getURL = function() { // returns the current route as an object
-        let url = window.location.hash;
-        return makeRouteData(url);
+    _rh.getURL = function(url) { // returns provided route as an object
+        if(url && url.isObject) {
+            return url;
+        } else {
+            url ? null : url = window.location.hash;
+            return makeRouteData(url);
+        }
     }
 
-    _rh.changeURL = function(url, title) {
-        if (!url) {
-            url = _rh.getURL();
-        } else {
-            url = makeRouteData(url);
-        }
-        if (!title) {
-            title = url.app;
-        }
+    _rh.changeURL = function(url, title) { // 
+        url = _rh.getURL(url);
+        !title ? title = url.app : null;
         let str = url.app;
         url.view ? str = str + '/' + url.view: null;
         url.id ? str = str + '/' + url.id : null;
@@ -144,9 +142,8 @@ let routeHandler = function() {
     }
 
     _rh.getApp = function(url, callback) {
-        if (!url) {
-            url = _rh.get();
-        }
+        !callback ? callback = function(e){return e} : null;
+        url = _rh.getURL(url);
         let l = local.set( 'lastRequest', url );
         $.ajax({
             url: "/apps/" + l.app + "/config.json", // server url
@@ -215,13 +212,19 @@ let routeHandler = function() {
         }
     }
 
+    _rh.exists = function(url) {
+        
+    }
+
     _rh.alias = function(url) { // checks to see if your url is a known alias for an app
-        if (!url) {
-            url = _rh.get();
-        }
+        url = _rh.getURL(url).app;
         let ret = null,
-            list = Object.entries(local.get('config').routing.alias);   
+            list = Object.entries(local.get('config').routing.alias);  
         for (i=0; i<list.length; i++) {
+            if ( list[i][0] == url) {
+                ret = list[i][0];
+                break;
+            }
             if ( list[i][1].includes(url) ) {
                 ret = list[i][0];
                 break;
@@ -230,7 +233,7 @@ let routeHandler = function() {
         if (ret)
             { return ret }
         else
-            { return url }
+            { return false }
     }
 
     // _rh.loadApp = function() {
