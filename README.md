@@ -1,4 +1,4 @@
-<img src="https://img.shields.io/badge/version-0.2.2-red.svg" alt="version 0.2.2"> <img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build is passing"> <img src="https://img.shields.io/badge/status-pre--alpha-lightgrey.svg" alt="pre-alpha: do not use in production">
+<img src="https://img.shields.io/badge/version-0.2.2_pre--alpha-red.svg" alt="version 0.2.2"> <img src="https://img.shields.io/badge/build-passing-brightgreen.svg" alt="build is passing"> 
 
 
 <p align="center"><img src="src/img/logo.png" title="Yaffolds" width="200" height="255"></p>
