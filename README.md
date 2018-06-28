@@ -3,6 +3,8 @@
 
 <p align="center"><img src="src/img/logo.png" title="Yaffolds" width="200" height="255"></p>
 
+<p style="color:#f00">THIS SOFTWARE IS CURRENTLY PRE-ALPHA AND NON-FUNCTIONING.</p>
+
 Yet-Another-Scaffolding environment, or Yaffolds, is designed to kick-start the front-end development of any modern web project. 
 
 ## Solid foundations for modern development
