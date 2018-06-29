@@ -6,6 +6,21 @@ String.prototype.capitalize = function() {
     return this.charAt(0).toUpperCase() + this.slice(1);
 }
 
+let loadJSON = function(url, callback) {
+    let xhr = new XMLHttpRequest();
+    xhr.open('GET', url, true);
+    xhr.responseType = 'json';
+    xhr.onload = function() {
+      let status = xhr.status;
+      if (status === 200) {
+        callback(xhr.response);
+      } else {
+        callback(xhr.status);
+      }
+    };
+    xhr.send();
+};
+
 /* -- DEFINITIONS -- */
 
 // Local sotrage handler with the following methods: get, set, data, key, remove, clear
@@ -127,7 +142,7 @@ let routeHandler = function() {
         }
     }
 
-    _rh.changeURL = function(url, title) { // 
+    _rh.changeURL = function(url, title) { // Updates URL to match provided route
         url = _rh.getURL(url);
         !title ? title = url.app : null;
         let str = url.app;
@@ -141,27 +156,18 @@ let routeHandler = function() {
         );
     }
 
-    _rh.getApp = function(url, callback) {
+    _rh.getAppData = function(url, callback) {
         !callback ? callback = function(e){return e} : null;
         url = _rh.getURL(url);
-        let l = local.set( 'lastRequest', url );
-        $.ajax({
-            url: "/apps/" + l.app + "/config.json", // server url
-            type: 'GET', 
-            datatype: 'json',
-            success: function(data) {
-                l = local.set('lastRequest.data', data); // used to return someone to the route they requested after login
-                return callback(l); // return data in callback
-            },
-            error: function(xhr, status, error) {
-                l = local.set('lastRequest.data', xhr); 
-                return callback(l); // error occur 
-            }
+        let l = local.set( 'lastRequest', url ),
+            p = "/apps/" + l.app + "/config.json"; 
+        loadJSON(p,function(data){
+            l = local.set('lastRequest.data', data);
+            return callback(l);
         });
-        
     }
 
-    _rh.request = function(url, callback) {
+    _rh.request = function() {
         // if (!url) {
         //     url = _rh.get();
         // }
@@ -195,12 +201,8 @@ let routeHandler = function() {
     }
 
     _rh.authorize = function(user, url) { // returns a login or error page if the use isn't authorized to view the requested app
-        if (!user) {
-            user = local.get('user');
-        }
-        if(!url) {
-            url = _rh.get(); 
-        }
+        user ? null : user = local.get('user');
+        url ? null : url = _rh.getURL(); 
         if (user['session']['timeout'] == true) {
             return local.get('config').routing.noUser
         } else {
@@ -212,8 +214,24 @@ let routeHandler = function() {
         }
     }
 
-    _rh.exists = function(url) {
-        
+    _rh.exists = function(url, callback) {
+        !callback ? callback = function(e){return e} : null;
+        url ? null : url = _rh.getURL(); 
+        _rh.getAppData(url, (x) => {
+            let resp = {app:false,view:false,mode:false};
+            x.data.title ? resp.app = true : null;
+            if (url.view) {
+                if(url.view in resp.data.views) {
+                    resp.view = true;
+                }
+            } 
+            if (url.mode) {
+                if(url.view in resp.data.modes) {
+                    resp.mode = true;
+                }
+            } 
+            return callback(resp);
+        });
     }
 
     _rh.alias = function(url) { // checks to see if your url is a known alias for an app
