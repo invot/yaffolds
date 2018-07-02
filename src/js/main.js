@@ -48,30 +48,15 @@ let storageHandler = function(session) {
         if (~path.indexOf(".")) {
             let o = path.split(".")[0],
                 p = _t.get(o),
-                q = path.split(".").slice(1);
-            switch (q.length) { // There has to be a better way to do this. Don't look at me. I'm ashamed. 
-                case 1:
-                    p[q[0]] = value; 
-                    break;
-                case 2:
-                    p[q[0]][q[1]] = value; 
-                    break;
-                case 3:
-                    p[q[0]][q[1]][q[2]] = value; 
-                    break;
-                case 4:
-                    p[q[0]][q[1]][q[2]][q[3]] = value; 
-                    break;
-                case 5:
-                    p[q[0]][q[1]][q[2]][q[3]][q[4]] = value; 
-                    break;
-                case 6: // If your object goes deeper than this, reconsider your life choices. 
-                    p[q[0]][q[1]][q[2]][q[3]][q[4]][q[5]] = value; 
-                    break;
-                default:  
-                    return "error";
-                    break;  
-            }  
+                q = path.split(".").slice(1),
+                r = p;
+                q.forEach(function(item, index) {
+                    if (index < q.length - 1) {
+                        r = r[item];
+                    } else {
+                        r[item] = value;
+                    }
+                });
             b.setItem(o, JSON.stringify(p));
             return p;
         } else {
